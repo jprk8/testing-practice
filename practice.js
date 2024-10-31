@@ -9,19 +9,19 @@ function reverseString(str) {
 }
 
 function calculator() {
-  this.add = function (a, b) {
+  this.add = (a, b) => {
     return a + b;
   };
 
-  this.subtract = function (a, b) {
+  this.subtract = (a, b) => {
     return a - b;
   };
 
-  this.divide = function (a, b) {
+  this.divide = (a, b) => {
     return a / b;
   };
 
-  this.multiply = function (a, b) {
+  this.multiply = (a, b) => {
     return a * b;
   };
 }
@@ -33,19 +33,16 @@ function caesarCipher(str, mod) {
     .join('');
 }
 
-// helper function for caesarCipher
 function shiftCharacter(char, mod) {
   let code = char.charCodeAt();
   const punctuations = `.,?!'"-_ `;
   if (!punctuations.includes(char)) {
     code += mod;
-    if (char === char.toUpperCase() && code > 90) {
-      const temp = code - 90;
-      code = temp + 64;
-    }
-    if (char === char.toLowerCase() && code > 122) {
-      const temp = code - 122;
-      code = temp + 96;
+    if (
+      (char === char.toUpperCase() && code > 90) ||
+      (char === char.toLowerCase() && code > 122)
+    ) {
+      code = code - 26;
     }
   }
   return String.fromCharCode(code);
